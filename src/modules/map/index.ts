@@ -3,7 +3,7 @@ import {
   forwardRightRoom,
   leftForwardRoom,
   leftRightRoom,
-} from "../ascii/index";
+} from "../ascii"
 import {
   STARTING_ROOM,
   ROOM_1,
@@ -13,7 +13,7 @@ import {
   ROOM_5,
   ROOM_6,
   FINAL_ROOM,
-} from "../constants/index";
+} from "../constants"
 
 type RoomNumber = number;
 
