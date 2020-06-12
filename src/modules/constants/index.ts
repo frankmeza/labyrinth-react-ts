@@ -45,4 +45,4 @@ export const INVALID: string = "invalid";
 
 // OTHER VALUES //
 
-export const MAX_NUMBER_ITEMS: string = 5;
+export const MAX_NUMBER_ITEMS: number = 5;

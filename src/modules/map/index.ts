@@ -18,6 +18,9 @@ import {
 type RoomNumber = number;
 
 interface ExitsMap {
+  // numbers 0 - 3 correspond to the birds-eye view of a room and its sides:
+  // KEYS: 0 is top, 1 is right, 2 is bottom, 3 is left
+  // VALUES: the number is the room found through that exit
   readonly [exitDirection: number]: RoomNumber;
 }
 
@@ -27,7 +30,7 @@ interface Room {
   readonly exits: ExitsMap;
 }
 
-interface RoomsMap {
+export interface RoomsMap {
   readonly [roomName: string]: Room;
 }
 

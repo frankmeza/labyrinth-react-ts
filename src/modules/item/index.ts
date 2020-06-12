@@ -20,8 +20,7 @@ interface Item {
   name: string;
   description: string;
   art: string;
-  location: string | null;
-  isCarriedByPlayer: boolean;
+  location: string | null; // location is null if it is carried by player
 }
 
 const createItem = (
@@ -29,28 +28,25 @@ const createItem = (
   description: string,
   art: string,
   location: string | null,
-  isCarriedByPlayer: boolean,
 ): Item => {
   return {
     name,
     description,
     art,
     location,
-    isCarriedByPlayer,
   };
 };
 
-const matchesAscii = createItem(MATCHES, MATCHES_DESC, matches(), null, true);
-const arrowsAscii = createItem(ARROWS, ARROWS_DESC, arrows(), ROOM_1, false);
-const bowAscii = createItem(BOW, BOW_DESC, bow(), ROOM_6, false);
-const shieldAscii = createItem(SHIELD, SHIELD_DESC, shield(), ROOM_3, false);
+const matchesAscii = createItem(MATCHES, MATCHES_DESC, matches(), null);
+const arrowsAscii = createItem(ARROWS, ARROWS_DESC, arrows(), ROOM_1);
+const bowAscii = createItem(BOW, BOW_DESC, bow(), ROOM_6);
+const shieldAscii = createItem(SHIELD, SHIELD_DESC, shield(), ROOM_3);
 
 const healthPotionAscii = createItem(
   HEALTH_POTION,
   HEALTH_POTION_DESC,
   healthPotion(),
   ROOM_4,
-  false,
 );
 
 const itemsList = [

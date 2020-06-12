@@ -1,16 +1,16 @@
-interface Player {
+export interface Player {
   readonly isTorchLit: boolean;
   readonly location: string;
 }
 
-interface PlayerProps {
+export interface PlayerProps {
   readonly isTorchLit: boolean;
   readonly location: string;
 }
 
 const defaultPlayerProps: PlayerProps = {
   isTorchLit: true,
-  location: "Starting Room",
+  location: "Starting Roo1m",
 };
 
 const createPlayer = (props: PlayerProps = defaultPlayerProps): Player => {
@@ -22,20 +22,26 @@ const createPlayer = (props: PlayerProps = defaultPlayerProps): Player => {
   };
 };
 
-const setPlayerTorch = (p: Player, isTorchLit: boolean): Player => {
+const setPlayerTorch = (player: Player, isTorchLit: boolean): Player => {
   return {
-    ...p,
+    ...player,
     isTorchLit,
   };
 };
 
-const setPlayerLocation = (p: Player, location: string): Player => {
+const setPlayerLocation = (player: Player, location: string): Player => {
   return {
-    ...p,
+    ...player,
     location,
   };
 };
 
-const player = createPlayer();
+export {
+  // Player,
+  // PlayerProps,
 
-export { setPlayerLocation, player };
+  // defaultPlayerProps,
+  createPlayer,
+  setPlayerTorch,
+  setPlayerLocation,
+};
