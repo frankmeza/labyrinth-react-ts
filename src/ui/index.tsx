@@ -15,6 +15,9 @@ const App = (props: AppProps): JSX.Element => {
     updatePlayer,
   ] = useState(p);
 
+  const { location } = player;
+  const debugPlayer = `PLAYER: ${JSON.stringify(player, null, 4)}`;
+
   const updateLocation = (roomName: string): void => {
     const movedPlayer = setPlayerLocation(player, roomName);
     updatePlayer(movedPlayer);
@@ -24,9 +27,6 @@ const App = (props: AppProps): JSX.Element => {
   //   // const p = handleLocation(player);
   //   // updatePlayer(p);
   // });
-
-  const debugPlayer = `PLAYER: ${JSON.stringify(player, null, 4)}`;
-  const { location } = player;
 
   return (
     <div>

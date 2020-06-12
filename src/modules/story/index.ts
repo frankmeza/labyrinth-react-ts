@@ -26,8 +26,10 @@ export const lostInALabyrinth = (): string => {
 };
 
 export const itemsOnGround = (): string => {
-  return "there are items on the ground\nit really seems like something from this room \
-         is going to be very important";
+  return [
+    "there are items on the ground",
+    "it really seems like something from this room is going to be very important",
+  ].join("\n");
 };
 
 export const cannotRelightTorch = (): string => {
@@ -45,12 +47,17 @@ export const playerCannotPickUpItem = (): string => {
   ].join("\n");
 };
 
-export const allItemsPickedUp = (): string => "you picked up all the items";
+export const allItemsPickedUp = (): string => {
+  return "you picked up all the items";
+};
 
-export const playerCurrentlyCarrying = (): string =>
-  "you are currently carrying:";
+export const playerCurrentlyCarrying = (): string => {
+  return "you are currently carrying:";
+};
 
-export const whatPlayerCanDrop = (): string => "what are you going to drop?";
+export const whatPlayerCanDrop = (): string => {
+  return "what are you going to drop?";
+};
 
 export const readyToFight = (): string => {
   return [

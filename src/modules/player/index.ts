@@ -39,7 +39,6 @@ const setPlayerLocation = (player: Player, location: string): Player => {
 export {
   // Player,
   // PlayerProps,
-
   // defaultPlayerProps,
   createPlayer,
   setPlayerTorch,
