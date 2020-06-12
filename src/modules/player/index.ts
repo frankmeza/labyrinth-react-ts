@@ -10,7 +10,7 @@ export interface PlayerProps {
 
 const defaultPlayerProps: PlayerProps = {
   isTorchLit: true,
-  location: "Starting Roo1m",
+  location: "Starting Room",
 };
 
 const createPlayer = (props: PlayerProps = defaultPlayerProps): Player => {

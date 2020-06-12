@@ -1,8 +1,5 @@
 import React from "react";
 import "./app.scss";
-
-const App = () => {
-  return <p>ReactTS Starter</p>;
-};
+import App from "./ui";
 
 export default App;
