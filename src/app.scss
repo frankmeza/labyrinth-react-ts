@@ -1,3 +1,16 @@
-p {
-  color: purple;
+#app {
+  background-color: #333;
+  color: #eee;
+}
+
+.room-view {
+  border: thick brown solid;
+  width: 18%;
+  padding-left: 1em;
+}
+
+.player-debug {
+  border: thick green solid;
+  width: 20%;
+  padding: 0.5em 0 0.5em 0.5em;
 }
