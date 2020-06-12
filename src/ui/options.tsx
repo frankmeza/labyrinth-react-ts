@@ -7,11 +7,11 @@ interface OptionsViewProps {
   readonly updateLocation: (roomName: string) => void;
 }
 
-const OptionsView = (props: OptionsViewProps) => {
+const OptionsView = (props: OptionsViewProps): JSX.Element => {
   const { roomName, updateLocation } = props;
   const { exits } = roomsMap[roomName];
 
-  const renderOptionButton = (exitsKey: string) => {
+  const renderOptionButton = (exitsKey: string): JSX.Element => {
     const displayText = exits[exitsKey];
     const onClick = () => updateLocation(displayText);
 
@@ -27,9 +27,13 @@ const OptionsView = (props: OptionsViewProps) => {
     );
   };
 
-  const generateLocationButtons = () => {
+  const generateLocationButtons = (): JSX.Element => {
     const keys = Object.keys(exits);
-    return keys.map(key => renderOptionButton(key));
+    return (
+      <div className="options-location-container">
+        {keys.map(key => renderOptionButton(key))}
+      </div>
+    );
   };
 
   const debugExits = `EXITS: ${JSON.stringify(exits, null, 4)}`;

@@ -37,19 +37,19 @@ const createItem = (
   };
 };
 
-const matchesAscii = createItem(MATCHES, MATCHES_DESC, matches(), null);
-const arrowsAscii = createItem(ARROWS, ARROWS_DESC, arrows(), ROOM_1);
-const bowAscii = createItem(BOW, BOW_DESC, bow(), ROOM_6);
-const shieldAscii = createItem(SHIELD, SHIELD_DESC, shield(), ROOM_3);
+const matchesAscii: Item = createItem(MATCHES, MATCHES_DESC, matches(), null);
+const arrowsAscii: Item = createItem(ARROWS, ARROWS_DESC, arrows(), ROOM_1);
+const bowAscii: Item = createItem(BOW, BOW_DESC, bow(), ROOM_6);
+const shieldAscii: Item = createItem(SHIELD, SHIELD_DESC, shield(), ROOM_3);
 
-const healthPotionAscii = createItem(
+const healthPotionAscii: Item = createItem(
   HEALTH_POTION,
   HEALTH_POTION_DESC,
   healthPotion(),
   ROOM_4,
 );
 
-const itemsList = [
+const itemsList: Item[] = [
   matchesAscii,
   arrowsAscii,
   bowAscii,

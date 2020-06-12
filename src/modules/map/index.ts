@@ -85,19 +85,19 @@ const exitsFinalRoom: ExitsMap = {
   RIGHT: ROOM_4,
 };
 
-const startingRoom = createRoom(
+const startingRoom: Room = createRoom(
   STARTING_ROOM,
   leftForwardRightRoom(),
   exitsStartingRoom,
 );
 
-const room1 = createRoom(ROOM_1, forwardRightRoom(), exitsRoom1);
-const room2 = createRoom(ROOM_2, leftForwardRightRoom(), exitsRoom2);
-const room3 = createRoom(ROOM_3, leftForwardRoom(), exitsRoom3);
-const room4 = createRoom(ROOM_4, leftForwardRightRoom(), exitsRoom4);
-const room5 = createRoom(ROOM_5, forwardRightRoom(), exitsRoom5);
-const room6 = createRoom(ROOM_6, leftForwardRoom(), exitsRoom6);
-const finalRoom = createRoom(FINAL_ROOM, leftRightRoom(), exitsFinalRoom);
+const room1: Room = createRoom(ROOM_1, forwardRightRoom(), exitsRoom1);
+const room2: Room = createRoom(ROOM_2, leftForwardRightRoom(), exitsRoom2);
+const room3: Room = createRoom(ROOM_3, leftForwardRoom(), exitsRoom3);
+const room4: Room = createRoom(ROOM_4, leftForwardRightRoom(), exitsRoom4);
+const room5: Room = createRoom(ROOM_5, forwardRightRoom(), exitsRoom5);
+const room6: Room = createRoom(ROOM_6, leftForwardRoom(), exitsRoom6);
+const finalRoom: Room = createRoom(FINAL_ROOM, leftRightRoom(), exitsFinalRoom);
 
 const roomsMap: RoomsMap = {
   [`${STARTING_ROOM}`]: startingRoom,

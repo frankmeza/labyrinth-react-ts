@@ -6,7 +6,7 @@ interface RoomViewProps {
   readonly roomName: string;
 }
 
-const RoomView = (props: RoomViewProps) => {
+const RoomView = (props: RoomViewProps): JSX.Element => {
   const { roomName } = props;
   const { name, art } = roomsMap[roomName];
 

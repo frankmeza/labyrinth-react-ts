@@ -7,7 +7,7 @@ interface AppProps {
   readonly player: Player;
 }
 
-const App = (props: AppProps) => {
+const App = (props: AppProps): JSX.Element => {
   const { player: p } = props;
 
   const [
@@ -15,7 +15,7 @@ const App = (props: AppProps) => {
     updatePlayer,
   ] = useState(p);
 
-  const updateLocation = (roomName: string) => {
+  const updateLocation = (roomName: string): void => {
     const movedPlayer = setPlayerLocation(player, roomName);
     updatePlayer(movedPlayer);
   };
