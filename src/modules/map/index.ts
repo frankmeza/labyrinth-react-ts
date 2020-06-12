@@ -3,7 +3,7 @@ import {
   forwardRightRoom,
   leftForwardRoom,
   leftRightRoom,
-} from "../ascii"
+} from "../ascii";
 import {
   STARTING_ROOM,
   ROOM_1,
@@ -13,15 +13,13 @@ import {
   ROOM_5,
   ROOM_6,
   FINAL_ROOM,
-} from "../constants"
+} from "../constants";
 
-type RoomNumber = number;
+type RoomName = string;
 
 interface ExitsMap {
-  // numbers 0 - 3 correspond to the birds-eye view of a room and its sides:
-  // KEYS: 0 is top, 1 is right, 2 is bottom, 3 is left
-  // VALUES: the number is the room found through that exit
-  readonly [exitDirection: number]: RoomNumber;
+  // VALUES: the room name found through that exit
+  readonly [exitDirection: string]: RoomName;
 }
 
 interface Room {
@@ -44,47 +42,47 @@ const createRoom = (name: string, art: string, exits: ExitsMap): Room => {
 
 // EXITS
 const exitsStartingRoom: ExitsMap = {
-  0: 1,
-  1: 2,
-  2: 4,
-  3: 5,
+  TOP: ROOM_1,
+  RIGHT: ROOM_2,
+  BOTTOM: ROOM_4,
+  LEFT: ROOM_5,
 };
 
 const exitsRoom1: ExitsMap = {
-  1: 3,
-  2: 0,
+  RIGHT: ROOM_3,
+  BOTTOM: STARTING_ROOM,
 };
 
 const exitsRoom2: ExitsMap = {
-  0: 3,
-  2: 6,
-  3: 0,
+  TOP: ROOM_3,
+  BOTTOM: ROOM_6,
+  LEFT: STARTING_ROOM,
 };
 
 const exitsRoom3: ExitsMap = {
-  2: 2,
-  3: 1,
+  BOTTOM: ROOM_2,
+  LEFT: ROOM_1,
 };
 
 const exitsRoom4: ExitsMap = {
-  0: 0,
-  1: 6,
-  3: 7,
+  TOP: STARTING_ROOM,
+  RIGHT: ROOM_6,
+  LEFT: FINAL_ROOM,
 };
 
 const exitsRoom5: ExitsMap = {
-  1: 0,
-  2: 7,
+  RIGHT: STARTING_ROOM,
+  BOTTOM: FINAL_ROOM,
 };
 
 const exitsRoom6: ExitsMap = {
-  0: 2,
-  3: 4,
+  TOP: ROOM_2,
+  LEFT: ROOM_4,
 };
 
 const exitsFinalRoom: ExitsMap = {
-  0: 5,
-  1: 4,
+  TOP: ROOM_5,
+  RIGHT: ROOM_4,
 };
 
 const startingRoom = createRoom(
