@@ -67,7 +67,7 @@ export default {
     }),
     html({
       fileName: "index.html",
-      title: "ReactTS Starter",
+      title: "Labyrinth::React::TS",
       template: ({ title }) => {
         return `
 <!DOCTYPE html>
