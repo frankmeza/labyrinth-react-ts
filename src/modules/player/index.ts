@@ -1,24 +1,28 @@
 export interface Player {
   readonly isTorchLit: boolean;
   readonly location: string;
+  readonly movesLeftForLitTorch: number;
 }
 
 export interface PlayerProps {
   readonly isTorchLit: boolean;
   readonly location: string;
+  readonly movesLeftForLitTorch: number;
 }
 
 const defaultPlayerProps: PlayerProps = {
   isTorchLit: true,
   location: "Starting Room",
+  movesLeftForLitTorch: 6,
 };
 
 const createPlayer = (props: PlayerProps = defaultPlayerProps): Player => {
-  const { isTorchLit, location } = props;
+  const { isTorchLit, location, movesLeftForLitTorch } = props;
 
   return {
     location,
     isTorchLit,
+    movesLeftForLitTorch,
   };
 };
 
@@ -36,11 +40,21 @@ const setPlayerLocation = (player: Player, location: string): Player => {
   };
 };
 
+const decrementPlayerTorch = (player: Player): Player => {
+  const { movesLeftForLitTorch: movesLeft } = player;
+
+  return {
+    ...player,
+    movesLeftForLitTorch: movesLeft - 1,
+  };
+};
+
 export {
   // Player,
   // PlayerProps,
-  // defaultPlayerProps,
+  defaultPlayerProps,
   createPlayer,
   setPlayerTorch,
   setPlayerLocation,
+  decrementPlayerTorch,
 };
