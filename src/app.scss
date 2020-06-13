@@ -9,6 +9,14 @@
   padding-left: 1em;
 }
 
+.menu-view {
+  border: thick brown solid;
+  height: 300px;
+  width: 50%;
+  padding-left: 1em;
+  overflow-y: hidden;
+}
+
 .player-debug {
   border: thick green solid;
   width: 20%;
