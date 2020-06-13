@@ -1,3 +1,7 @@
+import { calculateText } from "./utils"
+
+export const calculateTextDisplay = calculateText;
+
 export const starSeparator = (): string => {
   return [
     "",
