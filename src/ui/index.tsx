@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
 import RoomView from "./room";
 import OptionsView from "./options";
-import { Player, setPlayerLocation } from "../modules/player";
+import MenuView from "./menu";
+import {
+  Player,
+  decrementPlayerTorch,
+  setPlayerLocation,
+} from "../modules/player";
+import { calculateTextDisplay } from "../modules/story";
 
 interface AppProps {
   readonly player: Player;
@@ -23,10 +29,12 @@ const App = (props: AppProps): JSX.Element => {
     updatePlayer(movedPlayer);
   };
 
-  // useEffect(() => {
-  //   // const p = handleLocation(player);
-  //   // updatePlayer(p);
-  // });
+  // prettier-ignore
+  useEffect(() => {
+    updatePlayer(decrementPlayerTorch(player))
+  }, [location]);
+
+  const linesOfText = calculateTextDisplay(player);
 
   return (
     <div>
@@ -35,6 +43,7 @@ const App = (props: AppProps): JSX.Element => {
       <pre className="player-debug">{debugPlayer}</pre>
       {/* DEBUGGER */}
 
+      <MenuView linesOfText={linesOfText} />
       <OptionsView roomName={location} updateLocation={updateLocation} />
       <RoomView roomName={location} />
     </div>
@@ -43,4 +52,3 @@ const App = (props: AppProps): JSX.Element => {
 
 export default App;
 // {/* <ItemView itemArt itemName isHeld */}
-// {/* <MenuView  */}
