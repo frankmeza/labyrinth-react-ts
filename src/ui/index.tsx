@@ -15,13 +15,10 @@ interface AppProps {
 
 const App = (props: AppProps): JSX.Element => {
   const { player: p } = props;
-
-  const [
-    player,
-    updatePlayer,
-  ] = useState(p);
+  const [player, updatePlayer] = useState(p);
 
   const { location } = player;
+
   const debugPlayer = `PLAYER: ${JSON.stringify(player, null, 4)}`;
 
   const updateLocation = (roomName: string): void => {

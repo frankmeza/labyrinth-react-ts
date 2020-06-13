@@ -1,4 +1,4 @@
-import { calculateText } from "./utils"
+import { calculateText } from "./utils";
 
 export const calculateTextDisplay = calculateText;
 

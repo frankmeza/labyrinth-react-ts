@@ -10,11 +10,7 @@ const defaultLines: string[] = [];
 
 const MenuView = (props: MenuViewProps): JSX.Element => {
   const { linesOfText } = props;
-
-  const [
-    lines,
-    setLines,
-  ] = useState(defaultLines);
+  const [lines, setLines] = useState(defaultLines);
 
   // prettier-ignore
   useEffect(() => {

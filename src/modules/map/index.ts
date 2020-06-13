@@ -22,7 +22,7 @@ interface ExitsMap {
   readonly [exitDirection: string]: RoomName;
 }
 
-interface Room {
+export interface Room {
   readonly name: string;
   readonly art: string;
   readonly exits: ExitsMap;

@@ -16,7 +16,7 @@ import {
 } from "../constants/index";
 import { arrows, bow, healthPotion, matches, shield } from "../ascii/index";
 
-interface Item {
+export interface Item {
   name: string;
   description: string;
   art: string;

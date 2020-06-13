@@ -19,21 +19,24 @@ const isPlayerEqualToDefaultValues = ({
   );
 };
 
-export const calculateText = (player: Player): string[] => {
-  const { movesLeftForLitTorch } = player;
+
+
+const calculateText = (player: Player): string[] => {
+  const { movesLeftForLitTorch, items, location } = player;
 
   if (isPlayerEqualToDefaultValues(player)) {
-    return [
-      starSeparator(),
-      lostInALabyrinth(),
-    ];
+    return [starSeparator(), lostInALabyrinth()];
   }
 
   if (movesLeftForLitTorch === 0) {
-    return [
-      cannotRelightTorch(),
-    ];
+    return [cannotRelightTorch()];
   }
+
+  // if (items in room) {
+  //   // items are here message
+  // }
 
   return [];
 };
+
+export { isPlayerEqualToDefaultValues, calculateText };

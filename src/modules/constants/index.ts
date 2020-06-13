@@ -46,3 +46,4 @@ export const INVALID: string = "invalid";
 // OTHER VALUES //
 
 export const MAX_NUMBER_ITEMS: number = 5;
+export const MAX_MOVES_BEFORE_MATCHES_NEEDED: number = 6;
