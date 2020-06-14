@@ -1,25 +1,19 @@
 import { Player, defaultPlayerProps } from "../player";
-import { lostInALabyrinth, starSeparator, cannotRelightTorch } from "../story";
+import {
+  lostInALabyrinth,
+  starSeparator,
+  cannotRelightTorch,
+  itemsOnGround,
+} from "../story";
+import { getItemsInRoom } from "../map/utils";
 
-const isPlayerEqualToDefaultValues = ({
-  isTorchLit,
-  location,
-  movesLeftForLitTorch,
-}: Player) => {
-  const {
-    isTorchLit: dTorch,
-    location: dLocation,
-    movesLeftForLitTorch: dMoves,
-  } = defaultPlayerProps;
-
+const isPlayerEqualToDefaultValues = (player: Player): boolean => {
   return (
-    isTorchLit === dTorch &&
-    location === dLocation &&
-    movesLeftForLitTorch === dMoves
+    player.isTorchLit === defaultPlayerProps.isTorchLit &&
+    player.location === defaultPlayerProps.location &&
+    player.movesLeftForLitTorch === defaultPlayerProps.movesLeftForLitTorch
   );
 };
-
-
 
 const calculateText = (player: Player): string[] => {
   const { movesLeftForLitTorch, items, location } = player;
@@ -29,12 +23,15 @@ const calculateText = (player: Player): string[] => {
   }
 
   if (movesLeftForLitTorch === 0) {
+    alert(cannotRelightTorch({ alertVersion: true }));
     return [cannotRelightTorch()];
   }
 
-  // if (items in room) {
-  //   // items are here message
-  // }
+  const itemsInCurrentRoom = getItemsInRoom(location);
+
+  if (itemsInCurrentRoom.length > 0) {
+    return [itemsOnGround()];
+  }
 
   return [];
 };

@@ -3,6 +3,7 @@ import {
   STARTING_ROOM,
   MAX_MOVES_BEFORE_MATCHES_NEEDED,
 } from "../constants";
+import player from "../../core";
 
 export interface Player {
   readonly isTorchLit: boolean;
@@ -35,6 +36,15 @@ const createPlayer = (props: PlayerProps = defaultPlayerProps): Player => {
     items,
   };
 };
+
+const killPlayer = (): Player => {
+  return {
+    location: "DEAD",
+    isTorchLit: false,
+    movesLeftForLitTorch: 0,
+    items: ["all stolen by graverobbers"]
+  }
+}
 
 const setPlayerTorch = (player: Player, isTorchLit: boolean): Player => {
   return {
@@ -82,6 +92,7 @@ export {
   // PlayerProps,
   defaultPlayerProps,
   createPlayer,
+  killPlayer,
   setPlayerTorch,
   setPlayerLocation,
   decrementPlayerTorch,

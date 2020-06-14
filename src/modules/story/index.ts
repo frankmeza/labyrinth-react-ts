@@ -2,6 +2,10 @@ import { calculateText } from "./utils";
 
 export const calculateTextDisplay = calculateText;
 
+interface OptionsObject {
+  readonly alertVersion?: boolean;
+}
+
 export const starSeparator = (): string => {
   return [
     "",
@@ -36,12 +40,18 @@ export const itemsOnGround = (): string => {
   ].join("\n");
 };
 
-export const cannotRelightTorch = (): string => {
-  return [
-    "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-    "without a lit torch you can't do anything and now you lose",
-    "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-  ].join("\n");
+export const cannotRelightTorch = ({ alertVersion }: OptionsObject = {}): string => {
+  return alertVersion
+    ? [
+        "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "without a lit torch you can't do anything and now you lose",
+        "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      ].join("\n")
+    : [
+        "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "without a lit torch you can't do anything and now you lose",
+        "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      ].join("\n");
 };
 
 export const playerCannotPickUpItem = (): string => {

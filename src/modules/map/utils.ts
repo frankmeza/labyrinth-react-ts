@@ -1,13 +1,9 @@
 import { Room } from ".";
 import { Item, itemsList } from "../item";
 
-const doesRoomHaveItems = (room: Room) => {
-  return getItemsInRoom(room).length > 0;
-};
-
-const getItemsInRoom = (room: Room): string[] => {
+const getItemsInRoom = (roomName: string): string[] => {
   const names = itemsList.reduce((acc: string[], item: Item) => {
-    if (item.location !== room.name) {
+    if (item.location !== roomName) {
       return [...acc, item.name];
     }
 
@@ -17,4 +13,4 @@ const getItemsInRoom = (room: Room): string[] => {
   return names;
 };
 
-export { doesRoomHaveItems, getItemsInRoom };
+export { getItemsInRoom };
