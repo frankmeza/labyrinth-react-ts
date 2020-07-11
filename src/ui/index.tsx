@@ -45,14 +45,13 @@ const App = (props: AppProps): JSX.Element => {
                     roomName={location}
                     updateLocation={updateLocation}
                 />
-
             </div>
 
             <MenuView linesOfText={linesOfText} />
 
             <div className="ui-row">
-                <ItemsView itemNames={items} playerLocation={location} isPlayerItems={true} />
-                <ItemsView itemNames={items} playerLocation={location} isPlayerItems={false} />
+                <ItemsView playerLocation={null} />
+                <ItemsView playerLocation={location} />
             </div>
             <RoomView roomName={location} />
         </div>

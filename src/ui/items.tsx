@@ -4,21 +4,19 @@ import { Item } from "../modules/item";
 import { getPlayerItems, getRoomItems } from "../modules/item/utils";
 
 interface ItemsViewProps {
-    readonly itemNames: string[];
-    readonly playerLocation: string;
-    readonly isPlayerItems: boolean;
+    readonly playerLocation: string | null;
 }
 
 const ItemsView = (props: ItemsViewProps): JSX.Element => {
-    const { isPlayerItems, itemNames, playerLocation } = props;
+    const { playerLocation } = props;
 
-    const viewTitle = isPlayerItems
-        ? "PLAYER ITEMS"
-        : `found in ${playerLocation}`;
+    const viewTitle = !!playerLocation
+        ? `found in ${playerLocation}`
+        : "PLAYER ITEMS";
 
-    const items = isPlayerItems
-        ? getPlayerItems()
-        : getRoomItems(playerLocation);
+    const items = !!playerLocation
+        ? getRoomItems(playerLocation)
+        : getPlayerItems();
 
     const renderItem = (item: Item): JSX.Element => {
         const { name, description, art } = item;
