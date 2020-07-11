@@ -1,6 +1,7 @@
 import React from "react";
 import "../app.scss";
-import { Item, getItemByKey } from "../modules/item";
+import { Item } from "../modules/item";
+import { getItemByKey } from "../modules/item/utils";
 
 interface ItemsViewProps {
     readonly itemNames: string[];
@@ -14,12 +15,12 @@ const ItemsView = (props: ItemsViewProps): JSX.Element => {
         const { name, description, art, location } = item;
 
         return (
-            <div>
+            <>
                 <pre>{name}</pre>
                 <pre>{description}</pre>
                 <pre>{art}</pre>
                 <pre>{location}</pre>
-            </div>
+            </>
         );
     };
 
