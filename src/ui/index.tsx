@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import RoomView from "./room";
 import OptionsView from "./options";
 import MenuView from "./menu";
+import ItemsView from "./items";
 import {
     Player,
     decrementPlayerTorch,
@@ -17,7 +18,7 @@ const App = (props: AppProps): JSX.Element => {
     const { player: p } = props;
     const [player, updatePlayer] = useState(p);
 
-    const { location } = player;
+    const { items, location } = player;
 
     const debugPlayer = `PLAYER: ${JSON.stringify(player, null, 4)}`;
 
@@ -42,6 +43,7 @@ const App = (props: AppProps): JSX.Element => {
 
             <MenuView linesOfText={linesOfText} />
             <OptionsView roomName={location} updateLocation={updateLocation} />
+            <ItemsView itemNames={items}/>
             <RoomView roomName={location} />
         </div>
     );

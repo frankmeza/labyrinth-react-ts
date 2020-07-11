@@ -23,6 +23,10 @@ export interface Item {
     readonly location: string | null; // location is null if it is carried by player
 }
 
+export interface ItemsMap {
+    readonly [itemName: string]: Item;
+}
+
 const createItem = (
     name: string,
     description: string,
@@ -49,12 +53,17 @@ const healthPotionAscii: Item = createItem(
     ROOM_4,
 );
 
-const itemsList: Item[] = [
-    matchesAscii,
-    arrowsAscii,
-    bowAscii,
-    shieldAscii,
-    healthPotionAscii,
-];
+const itemsMap: ItemsMap = {
+    [`${MATCHES}`]: matchesAscii,
+    [`${ARROWS}`]: arrowsAscii,
+    [`${BOW}`]: bowAscii,
+    [`${SHIELD}`]: shieldAscii,
+    [`${HEALTH_POTION}`]: healthPotionAscii,
+};
 
-export { itemsList };
+// TODO move to utils
+const getItemByKey = (key: string): Item => {
+    return itemsMap[key];
+};
+
+export { getItemByKey, itemsMap };
