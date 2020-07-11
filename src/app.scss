@@ -22,3 +22,8 @@
   width: 20%;
   padding: 0.5em 0 0.5em 0.5em;
 }
+
+.ui-row {
+    display: flex;
+    flex-direction: row;
+}
