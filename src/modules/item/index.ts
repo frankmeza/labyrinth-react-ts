@@ -61,9 +61,4 @@ const itemsMap: ItemsMap = {
     [`${HEALTH_POTION}`]: healthPotionAscii,
 };
 
-// TODO move to utils
-const getItemByKey = (key: string): Item => {
-    return itemsMap[key];
-};
-
-export { getItemByKey, itemsMap };
+export { itemsMap };
