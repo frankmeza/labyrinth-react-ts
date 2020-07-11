@@ -5,6 +5,7 @@ import { getItemByKey } from "../modules/item/utils";
 
 interface ItemsViewProps {
     readonly itemNames: string[];
+    readonly isPlayerItems: boolean;
 }
 
 const ItemsView = (props: ItemsViewProps): JSX.Element => {
@@ -15,12 +16,12 @@ const ItemsView = (props: ItemsViewProps): JSX.Element => {
         const { name, description, art, location } = item;
 
         return (
-            <>
+            <React.Fragment>
                 <pre>{name}</pre>
                 <pre>{description}</pre>
                 <pre>{art}</pre>
                 <pre>{location}</pre>
-            </>
+            </React.Fragment>
         );
     };
 

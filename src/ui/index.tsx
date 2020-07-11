@@ -43,7 +43,8 @@ const App = (props: AppProps): JSX.Element => {
 
             <OptionsView roomName={location} updateLocation={updateLocation} />
             <MenuView linesOfText={linesOfText} />
-            <ItemsView itemNames={items} />
+            <ItemsView itemNames={items} isPlayerItems={true}/>
+            <ItemsView itemNames={items} isPlayerItems={false}/>
             <RoomView roomName={location} />
         </div>
     );

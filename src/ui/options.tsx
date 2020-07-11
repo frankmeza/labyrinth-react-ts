@@ -27,7 +27,7 @@ const OptionsView = (props: OptionsViewProps): JSX.Element => {
         );
     };
 
-    const generateLocationButtons = (): JSX.Element => {
+    const renderLocationButtons = (): JSX.Element => {
         return (
             <div className="options-location-container">
                 {Object.keys(exits).map(renderOptionButton)}
@@ -43,7 +43,7 @@ const OptionsView = (props: OptionsViewProps): JSX.Element => {
             <pre>{debugExits}</pre>
             {/* DEBUGGER */}
 
-            {generateLocationButtons()}
+            {renderLocationButtons()}
         </div>
     );
 };
