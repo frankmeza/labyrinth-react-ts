@@ -27,10 +27,11 @@ const App = (props: AppProps): JSX.Element => {
         updatePlayer(movedPlayer);
     };
 
-    // prettier-ignore
-    useEffect(() => {
-    updatePlayer(decrementPlayerTorch(player))
-  }, [location]);
+    const makeUpdatesPlayer = () => {
+        updatePlayer(decrementPlayerTorch(player));
+    };
+
+    useEffect(makeUpdatesPlayer, [location]);
 
     const linesOfText = calculateTextDisplay(player);
 
@@ -39,15 +40,13 @@ const App = (props: AppProps): JSX.Element => {
             <p>Labyringth::React::TS</p>
             {/* DEBUGGER */}
             <pre className="player-debug">{debugPlayer}</pre>
-            {/* DEBUGGER */}
 
-            <MenuView linesOfText={linesOfText} />
             <OptionsView roomName={location} updateLocation={updateLocation} />
-            <ItemsView itemNames={items}/>
+            <MenuView linesOfText={linesOfText} />
+            <ItemsView itemNames={items} />
             <RoomView roomName={location} />
         </div>
     );
 };
 
 export default App;
-// {/* <ItemView itemArt itemName isHeld */}

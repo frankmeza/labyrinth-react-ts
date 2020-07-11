@@ -61,11 +61,11 @@ const setPlayerLocation = (player: Player, location: string): Player => {
 };
 
 const decrementPlayerTorch = (player: Player): Player => {
-    const { movesLeftForLitTorch: movesLeft } = player;
+    const { movesLeftForLitTorch: movesRemaining } = player;
 
     return {
         ...player,
-        movesLeftForLitTorch: movesLeft - 1,
+        movesLeftForLitTorch: movesRemaining - 1,
     };
 };
 
