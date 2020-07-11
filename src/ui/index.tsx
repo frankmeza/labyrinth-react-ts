@@ -38,13 +38,22 @@ const App = (props: AppProps): JSX.Element => {
     return (
         <div>
             <p>Labyringth::React::TS</p>
-            {/* DEBUGGER */}
-            <pre className="player-debug">{debugPlayer}</pre>
+            <div className="ui-row">
+                <pre className="player-debug">{debugPlayer}</pre>
 
-            <OptionsView roomName={location} updateLocation={updateLocation} />
+                <OptionsView
+                    roomName={location}
+                    updateLocation={updateLocation}
+                />
+
+            </div>
+
             <MenuView linesOfText={linesOfText} />
-            <ItemsView itemNames={items} isPlayerItems={true}/>
-            <ItemsView itemNames={items} isPlayerItems={false}/>
+
+            <div className="ui-row">
+                <ItemsView itemNames={items} playerLocation={location} isPlayerItems={true} />
+                <ItemsView itemNames={items} playerLocation={location} isPlayerItems={false} />
+            </div>
             <RoomView roomName={location} />
         </div>
     );

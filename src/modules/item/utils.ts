@@ -1,7 +1,20 @@
 import { Item, itemsMap } from ".";
 
-const getItemByKey = (key: string): Item => {
-    return itemsMap[key];
+const isPlayerItem = (item: Item) => {
+    // location is null if carried by player
+    return item.location === null;
 };
 
-export { getItemByKey }
+const getPlayerItems = (): Item[] => {
+    return Object.values(itemsMap).filter(isPlayerItem);
+};
+
+const isRoomItem = (item: Item, playerLocation: string) => {
+    return item.location === playerLocation;
+};
+
+const getRoomItems = (playerLocation: string): Item[] => {
+    return Object.values(itemsMap).filter(item => isRoomItem(item, playerLocation));
+};
+
+export { getPlayerItems, getRoomItems };
