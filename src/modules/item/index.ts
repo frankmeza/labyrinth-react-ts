@@ -20,7 +20,7 @@ export interface Item {
     readonly name: string;
     readonly description: string;
     readonly art: string;
-    readonly location: string | null; // location is null if it is carried by player
+    location: string | null; // location is null if it is carried by player
 }
 
 export interface ItemsMap {

@@ -7,8 +7,12 @@ import {
     Player,
     decrementPlayerTorch,
     setPlayerLocation,
+    dropItem,
+    pickupItem,
 } from "../modules/player";
-import { calculateTextDisplay } from "../modules/story";
+import { calculateText } from "../modules/story/utils";
+import { itemsMap } from "../modules/item";
+import { updateItemLocation } from "../modules/item/utils";
 
 interface AppProps {
     readonly player: Player;
@@ -18,7 +22,7 @@ const App = (props: AppProps): JSX.Element => {
     const { player: p } = props;
     const [player, updatePlayer] = useState(p);
 
-    const { items, location } = player;
+    const { location } = player;
 
     const debugPlayer = `PLAYER: ${JSON.stringify(player, null, 4)}`;
 
@@ -27,17 +31,29 @@ const App = (props: AppProps): JSX.Element => {
         updatePlayer(movedPlayer);
     };
 
-    const makeUpdatesPlayer = () => {
+    const makeUpdates = (): void => {
         updatePlayer(decrementPlayerTorch(player));
     };
 
-    useEffect(makeUpdatesPlayer, [location]);
+    useEffect(makeUpdates, [location, itemsMap]);
 
-    const linesOfText = calculateTextDisplay(player);
+    const linesOfText = calculateText(player);
+
+    const handleDropItem = (itemName: string) => {
+        updatePlayer(dropItem(player, itemName));
+        updateItemLocation(itemsMap, itemName, location)
+    };
+
+    const handlePickupItem = (itemName: string) => {
+        updatePlayer(pickupItem(player, itemName));
+        updateItemLocation(itemsMap, itemName, location)
+    };
 
     return (
         <div>
             <p>Labyringth::React::TS</p>
+            <MenuView linesOfText={linesOfText} />
+
             <div className="ui-row">
                 <pre className="player-debug">{debugPlayer}</pre>
 
@@ -47,11 +63,12 @@ const App = (props: AppProps): JSX.Element => {
                 />
             </div>
 
-            <MenuView linesOfText={linesOfText} />
-
             <div className="ui-row">
-                <ItemsView playerLocation={null} />
-                <ItemsView playerLocation={location} />
+                <ItemsView playerLocation={null} itemHandler={handleDropItem} />
+                <ItemsView
+                    playerLocation={location}
+                    itemHandler={handlePickupItem}
+                />
             </div>
             <RoomView roomName={location} />
         </div>

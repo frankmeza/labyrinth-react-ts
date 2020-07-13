@@ -3,6 +3,7 @@ export const uuidv4 = () => {
 
     const uuid = base.replace(/[xy]/g, char => {
         const randomNumber = (Math.random() * 16) | 0;
+
         // prettier-ignore
         const variation = char == "x"
             ? randomNumber

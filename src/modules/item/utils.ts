@@ -1,4 +1,4 @@
-import { Item, itemsMap } from ".";
+import { Item, itemsMap, ItemsMap } from ".";
 
 const isPlayerItem = (item: Item) => {
     // location is null if carried by player
@@ -17,4 +17,14 @@ const getRoomItems = (playerLocation: string): Item[] => {
     return Object.values(itemsMap).filter(item => isRoomItem(item, playerLocation));
 };
 
-export { getPlayerItems, getRoomItems };
+const updateItemLocation = (itemsMap: ItemsMap, itemName: string, location: string): void => {
+    const updatedItem = { ...itemsMap[itemName], location };
+    const { name } = updatedItem;
+
+    itemsMap = {
+        ...itemsMap,
+        [name]: updatedItem,
+    }
+}
+
+export { getPlayerItems, getRoomItems, updateItemLocation };

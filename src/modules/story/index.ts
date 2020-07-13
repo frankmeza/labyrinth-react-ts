@@ -1,7 +1,3 @@
-import { calculateText } from "./utils";
-
-export const calculateTextDisplay = calculateText;
-
 interface OptionsObject {
     readonly alertVersion?: boolean;
 }
