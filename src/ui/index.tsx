@@ -19,8 +19,16 @@ interface AppProps {
     readonly itemsMap: ItemsMap;
 }
 
+type PlayerCallbackFn = (player: Player, itemName: string) => Player;
+
 const App = (props: AppProps): JSX.Element => {
-    const [state, updateState] = useState({ ...props });
+    const { player: p } = props;
+
+    const [state, updateState] = useState({
+        ...props,
+        linesOfText: calculateText(p),
+    });
+
     const { player, itemsMap } = state;
 
     const { location } = player;
@@ -40,7 +48,7 @@ const App = (props: AppProps): JSX.Element => {
     const linesOfText = calculateText(player);
 
     const handleMovingItem = (
-        playerCallbackFn: Function,
+        playerCallbackFn: PlayerCallbackFn,
         itemName: string,
         isPickup: boolean,
     ): void => {
@@ -68,6 +76,7 @@ const App = (props: AppProps): JSX.Element => {
         handleMovingItem(pickupItem, itemName, true);
     };
 
+    ///// debug stuff
     const debugItems: Item[] = Object.values(itemsMap).map(item => ({
         ...item,
         art: "",
@@ -76,6 +85,11 @@ const App = (props: AppProps): JSX.Element => {
 
     const debuggerItems = `ITEMS: ${JSON.stringify(debugItems, null, 4)}`;
     const debuggerPlayer = `PLAYER: ${JSON.stringify(player, null, 4)}`;
+    ///// debug stuff
+
+    const updatePlayer = (updatedPlayer: Player): void => {
+        updateState({ ...state, player: updatedPlayer });
+    };
 
     return (
         <div>
@@ -90,8 +104,13 @@ const App = (props: AppProps): JSX.Element => {
                     roomName={location}
                     updateLocation={updateLocation}
                 />
+
                 <RoomView roomName={location} />
-                <MenuView linesOfText={linesOfText} />
+
+                <MenuView
+                    textMetadata={linesOfText}
+                    updatePlayer={updatePlayer}
+                />
             </div>
 
             <div className="ui-row">
