@@ -11,7 +11,7 @@ import {
     pickupItem,
 } from "../modules/player";
 import { calculateText } from "../modules/story/utils";
-import { ItemsMap } from "../modules/item";
+import { ItemsMap, Item } from "../modules/item";
 import { updateItemLocation } from "../modules/item/utils";
 
 interface AppProps {
@@ -24,8 +24,6 @@ const App = (props: AppProps): JSX.Element => {
     const { player, itemsMap } = state;
 
     const { location } = player;
-
-    const debugPlayer = `PLAYER: ${JSON.stringify(player, null, 4)}`;
 
     const updateLocation = (roomName: string): void => {
         const updatedPlayer = setPlayerLocation(player, roomName);
@@ -70,18 +68,30 @@ const App = (props: AppProps): JSX.Element => {
         handleMovingItem(pickupItem, itemName, true);
     };
 
+    const debugItems: Item[] = Object.values(itemsMap).map(item => ({
+        ...item,
+        art: "",
+        description: "",
+    }));
+
+    const debuggerItems = `ITEMS: ${JSON.stringify(debugItems, null, 4)}`;
+    const debuggerPlayer = `PLAYER: ${JSON.stringify(player, null, 4)}`;
+
     return (
         <div>
             <p>Labyringth::React::TS</p>
-            <MenuView linesOfText={linesOfText} />
+            <div className="ui-row">
+                <pre className="debug">{debuggerPlayer}</pre>
+                <pre className="debug">{debuggerItems}</pre>
+            </div>
 
             <div className="ui-row">
-                <pre className="player-debug">{debugPlayer}</pre>
-
                 <OptionsView
                     roomName={location}
                     updateLocation={updateLocation}
                 />
+                <RoomView roomName={location} />
+                <MenuView linesOfText={linesOfText} />
             </div>
 
             <div className="ui-row">
@@ -96,7 +106,6 @@ const App = (props: AppProps): JSX.Element => {
                     itemHandler={handlePickupItem}
                 />
             </div>
-            <RoomView roomName={location} />
         </div>
     );
 };
