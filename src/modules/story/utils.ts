@@ -1,4 +1,4 @@
-import { Player, defaultPlayerProps } from "../player";
+import { Player, defaultPlayerProps, setPlayerTorch } from "../player";
 import {
     lostInALabyrinth,
     starSeparator,
@@ -6,6 +6,12 @@ import {
     itemsOnGround,
 } from "../story";
 import { getItemsInRoom } from "../map/utils";
+import { MATCHES } from "../constants";
+
+export interface CalculateTextMetadata {
+    readonly text: string[];
+    readonly playerUpdated?: Player;
+}
 
 const isPlayerEqualToDefaultValues = (player: Player): boolean => {
     return (
@@ -15,25 +21,45 @@ const isPlayerEqualToDefaultValues = (player: Player): boolean => {
     );
 };
 
-const calculateText = (player: Player): string[] => {
+const calculateText = (player: Player): CalculateTextMetadata => {
     const { movesLeftForLitTorch, items, location } = player;
+    const hasMatches = items.includes(MATCHES);
 
     if (isPlayerEqualToDefaultValues(player)) {
-        return [starSeparator(), lostInALabyrinth()];
+        return {
+            text: [starSeparator(), lostInALabyrinth()],
+        };
     }
 
     if (movesLeftForLitTorch === 0) {
+        const goodThingBro =
+            "GOOD THING YOU HAVE MATCHES TO RELIGHT YOUR TORCH!!!!";
+
+        if (hasMatches && confirm(goodThingBro)) {
+            const playerUpdated = setPlayerTorch(player, true);
+
+            return {
+                playerUpdated,
+                text: [goodThingBro],
+            };
+        }
+
         alert(cannotRelightTorch({ alertVersion: true }));
-        return [cannotRelightTorch()];
+
+        return {
+            text: [cannotRelightTorch()],
+        };
     }
 
     const itemsInCurrentRoom = getItemsInRoom(location);
 
     if (itemsInCurrentRoom.length > 0) {
-        return [itemsOnGround()];
+        return {
+            text: [itemsOnGround({ wantsMoreSpace: true })],
+        };
     }
 
-    return [];
+    return { text: [] };
 };
 
 export { isPlayerEqualToDefaultValues, calculateText };

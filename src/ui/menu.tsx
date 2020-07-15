@@ -1,21 +1,32 @@
 import React, { useState, useEffect } from "react";
 import "../app.scss";
 import { uuidv4 } from "../modules/shared_utils";
+import { CalculateTextMetadata } from "../modules/story/utils";
+import { Player } from "../modules/player";
+
+type UpdatePlayerCallbackFn = (updatedPlayer: Player) => void
 
 interface MenuViewProps {
-    readonly linesOfText: string[];
+    readonly textMetadata: CalculateTextMetadata;
+    readonly updatePlayer: UpdatePlayerCallbackFn;
 }
 
 const defaultLines: string[] = [];
 
 const MenuView = (props: MenuViewProps): JSX.Element => {
-    const { linesOfText } = props;
+    const { textMetadata, updatePlayer } = props;
+    const { text, playerUpdated } = textMetadata;
+
+    if (playerUpdated) {
+        updatePlayer(playerUpdated);
+    }
+
     const [lines, setLines] = useState(defaultLines);
 
     // prettier-ignore
     useEffect(() => {
-    setLines([...linesOfText, ...lines])
-  }, [linesOfText]);
+    setLines([...text, ...lines])
+  }, [textMetadata]);
 
     const newOutput = lines.map(line => {
         const key = uuidv4();
