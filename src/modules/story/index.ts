@@ -1,5 +1,6 @@
 interface OptionsObject {
     readonly alertVersion?: boolean;
+    readonly wantsMoreSpace?: boolean;
 }
 
 export const starSeparator = (): string => {
@@ -29,10 +30,14 @@ export const lostInALabyrinth = (): string => {
     ].join("\n");
 };
 
-export const itemsOnGround = (): string => {
+export const itemsOnGround = (
+    { wantsMoreSpace }: OptionsObject = {},
+): string => {
+    const space = wantsMoreSpace ? "\n\n\n\n\n\n\n\n" : "";
+
     return [
         "there are items on the ground",
-        "it really seems like something from this room is going to be very important",
+        `it really seems like something from this room is going to be very important${space}`,
     ].join("\n");
 };
 
