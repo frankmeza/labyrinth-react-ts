@@ -53,7 +53,7 @@ const healthPotionAscii: Item = createItem(
     ROOM_4,
 );
 
-const itemsMap: ItemsMap = {
+let itemsMap: ItemsMap = {
     [`${MATCHES}`]: matchesAscii,
     [`${ARROWS}`]: arrowsAscii,
     [`${BOW}`]: bowAscii,
@@ -61,4 +61,6 @@ const itemsMap: ItemsMap = {
     [`${HEALTH_POTION}`]: healthPotionAscii,
 };
 
-export { itemsMap };
+const createItemsMap = () => itemsMap;
+
+export { itemsMap, createItemsMap };

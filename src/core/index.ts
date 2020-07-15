@@ -1,5 +1,7 @@
 import { createPlayer } from "../modules/player";
+import { createItemsMap } from "../modules/item";
 
 const player = createPlayer();
+const itemsMap = createItemsMap();
 
-export default player;
+export { itemsMap, player };

@@ -11,15 +11,16 @@ import {
     pickupItem,
 } from "../modules/player";
 import { calculateText } from "../modules/story/utils";
-import { itemsMap } from "../modules/item";
+import { ItemsMap } from "../modules/item";
 import { updateItemLocation } from "../modules/item/utils";
 
 interface AppProps {
     readonly player: Player;
+    readonly itemsMap: ItemsMap;
 }
 
 const App = (props: AppProps): JSX.Element => {
-    const { player: p } = props;
+    const { player: p, itemsMap } = props;
     const [player, updatePlayer] = useState(p);
 
     const { location } = player;
@@ -41,12 +42,12 @@ const App = (props: AppProps): JSX.Element => {
 
     const handleDropItem = (itemName: string) => {
         updatePlayer(dropItem(player, itemName));
-        updateItemLocation(itemsMap, itemName, location)
+        updateItemLocation(itemsMap, itemName, location);
     };
 
     const handlePickupItem = (itemName: string) => {
         updatePlayer(pickupItem(player, itemName));
-        updateItemLocation(itemsMap, itemName, location)
+        updateItemLocation(itemsMap, itemName, location);
     };
 
     return (
@@ -64,9 +65,14 @@ const App = (props: AppProps): JSX.Element => {
             </div>
 
             <div className="ui-row">
-                <ItemsView playerLocation={null} itemHandler={handleDropItem} />
+                <ItemsView
+                    playerLocation={null}
+                    itemsMap={itemsMap}
+                    itemHandler={handleDropItem}
+                />
                 <ItemsView
                     playerLocation={location}
+                    itemsMap={itemsMap}
                     itemHandler={handlePickupItem}
                 />
             </div>
