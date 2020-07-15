@@ -20,20 +20,21 @@ interface AppProps {
 }
 
 const App = (props: AppProps): JSX.Element => {
-    const { player: p, itemsMap } = props;
-    const [player, updatePlayer] = useState(p);
+    const [state, updateState] = useState({ ...props });
+    const { player, itemsMap } = state;
 
     const { location } = player;
 
     const debugPlayer = `PLAYER: ${JSON.stringify(player, null, 4)}`;
 
     const updateLocation = (roomName: string): void => {
-        const movedPlayer = setPlayerLocation(player, roomName);
-        updatePlayer(movedPlayer);
+        const updatedPlayer = setPlayerLocation(player, roomName);
+        updateState({ ...state, player: updatedPlayer });
     };
 
     const makeUpdates = (): void => {
-        updatePlayer(decrementPlayerTorch(player));
+        const updatedPlayer = decrementPlayerTorch(player);
+        updateState({ ...state, player: updatedPlayer });
     };
 
     useEffect(makeUpdates, [location, itemsMap]);
@@ -41,12 +42,25 @@ const App = (props: AppProps): JSX.Element => {
     const linesOfText = calculateText(player);
 
     const handleDropItem = (itemName: string) => {
-        updatePlayer(dropItem(player, itemName));
-        updateItemLocation(itemsMap, itemName, location);
+        const updatedPlayer = dropItem(player, itemName);
+
+        const updatedItemsMap = updateItemLocation(
+            itemsMap,
+            itemName,
+            location,
+        );
+
+        updateState({
+            ...state,
+            player: updatedPlayer,
+            itemsMap: updatedItemsMap,
+        });
     };
 
     const handlePickupItem = (itemName: string) => {
-        updatePlayer(pickupItem(player, itemName));
+        const updatedPlayer = pickupItem(player, itemName);
+        updateState({ ...state, player: updatedPlayer });
+
         updateItemLocation(itemsMap, itemName, location);
     };
 

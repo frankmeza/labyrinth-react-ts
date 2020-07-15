@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../app.scss";
-import { Item } from "../modules/item";
+import { Item, ItemsMap } from "../modules/item";
 import { getPlayerItems, getRoomItems } from "../modules/item/utils";
 
 type ItemHandler = (itemName: string) => void;
@@ -8,17 +8,17 @@ type ItemHandler = (itemName: string) => void;
 interface ItemsViewProps {
     readonly playerLocation: string | null;
     readonly itemHandler: ItemHandler;
+    readonly itemsMap: ItemsMap;
 }
 
-// TODO: add click arrows to sides of UI to scroll through items list
 const ItemsView = (props: ItemsViewProps): JSX.Element => {
-    const { playerLocation, itemHandler } = props;
+    const { playerLocation, itemHandler, itemsMap } = props;
 
     const [itemToDisplayIndex, setItemToDisplayIndex] = useState(0);
 
     const items = !!playerLocation
-        ? getRoomItems(playerLocation)
-        : getPlayerItems();
+        ? getRoomItems(playerLocation, itemsMap)
+        : getPlayerItems(itemsMap);
 
     const viewTitle = !!playerLocation
         ? `found in ${playerLocation}`
@@ -77,6 +77,10 @@ const ItemsView = (props: ItemsViewProps): JSX.Element => {
 
     const hasItemsInList = Object.values(items).length > 0;
 
+    if (!hasItemsInList) {
+        return <pre>NO HAY UTILES</pre>;
+    }
+
     const hasPreviousItem = hasItemsInList && items[itemToDisplayIndex - 1];
     const hasNextItem = hasItemsInList && items[itemToDisplayIndex + 1];
 
@@ -110,7 +114,7 @@ const ItemsView = (props: ItemsViewProps): JSX.Element => {
     );
 
     const isRoomItems = !!playerLocation;
-
+    debugger;
     return (
         <div className="room-view">
             {hasPreviousItem && previousItemButton}
