@@ -52,9 +52,16 @@ const setPlayerLocation = (player: Player, location: string): Player => {
     };
 };
 
-const setPlayerTorch = (player: Player, isTorchLit: boolean): Player => {
+const setPlayerTorch = (player: Player, isTorchLit: boolean): any => {
+    const { movesLeftForLitTorch: movesRemaining } = player;
+
+    const movesLeftForLitTorch = isTorchLit
+        ? MAX_MOVES_BEFORE_MATCHES_NEEDED
+        : movesRemaining;
+
     return {
         ...player,
+        movesLeftForLitTorch,
         isTorchLit,
     };
 };
