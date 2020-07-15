@@ -20,7 +20,7 @@ export interface Item {
     readonly name: string;
     readonly description: string;
     readonly art: string;
-    location: string | null; // location is null if it is carried by player
+    readonly location: string | null; // location is null if it is carried by player
 }
 
 export interface ItemsMap {
@@ -53,7 +53,7 @@ const healthPotionAscii: Item = createItem(
     ROOM_4,
 );
 
-let itemsMap: ItemsMap = {
+const defaultItemsMap: ItemsMap = {
     [`${MATCHES}`]: matchesAscii,
     [`${ARROWS}`]: arrowsAscii,
     [`${BOW}`]: bowAscii,
@@ -61,6 +61,8 @@ let itemsMap: ItemsMap = {
     [`${HEALTH_POTION}`]: healthPotionAscii,
 };
 
-const createItemsMap = () => itemsMap;
+const createItemsMap = (props: ItemsMap = defaultItemsMap): ItemsMap => {
+    return props;
+};
 
-export { itemsMap, createItemsMap };
+export { defaultItemsMap, createItemsMap };

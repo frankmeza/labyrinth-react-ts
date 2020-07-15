@@ -3,7 +3,6 @@ import {
     STARTING_ROOM,
     MAX_MOVES_BEFORE_MATCHES_NEEDED,
 } from "../constants";
-import player from "../../core";
 
 export interface Player {
     readonly isTorchLit: boolean;
@@ -46,17 +45,17 @@ const killPlayer = (): Player => {
     };
 };
 
-const setPlayerTorch = (player: Player, isTorchLit: boolean): Player => {
-    return {
-        ...player,
-        isTorchLit,
-    };
-};
-
 const setPlayerLocation = (player: Player, location: string): Player => {
     return {
         ...player,
         location,
+    };
+};
+
+const setPlayerTorch = (player: Player, isTorchLit: boolean): Player => {
+    return {
+        ...player,
+        isTorchLit,
     };
 };
 

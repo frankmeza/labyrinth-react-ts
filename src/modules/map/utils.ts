@@ -1,4 +1,5 @@
-import { Item, itemsMap } from "../item";
+import { Item } from "../item";
+import { itemsMap } from "../../core";
 
 const getItemsInRoom = (roomName: string): string[] => {
     const itemsList: Item[] = Object.values(itemsMap);
