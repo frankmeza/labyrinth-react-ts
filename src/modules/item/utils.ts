@@ -20,7 +20,7 @@ const getRoomItems = (playerLocation: string, iMap: ItemsMap): Item[] => {
 const updateItemLocation = (
     iMap: ItemsMap,
     itemName: string,
-    location: string,
+    location: string | null,
 ): ItemsMap => {
     const updatedItem = { ...iMap[itemName], location };
     const { name } = updatedItem;

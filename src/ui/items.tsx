@@ -78,7 +78,7 @@ const ItemsView = (props: ItemsViewProps): JSX.Element => {
     const hasItemsInList = Object.values(items).length > 0;
 
     if (!hasItemsInList) {
-        return <pre>NO HAY UTILES</pre>;
+        return <pre>¡NO HAY UTILES!</pre>;
     }
 
     const hasPreviousItem = hasItemsInList && items[itemToDisplayIndex - 1];
@@ -114,7 +114,7 @@ const ItemsView = (props: ItemsViewProps): JSX.Element => {
     );
 
     const isRoomItems = !!playerLocation;
-    debugger;
+
     return (
         <div className="room-view">
             {hasPreviousItem && previousItemButton}

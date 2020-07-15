@@ -41,13 +41,18 @@ const App = (props: AppProps): JSX.Element => {
 
     const linesOfText = calculateText(player);
 
-    const handleDropItem = (itemName: string) => {
-        const updatedPlayer = dropItem(player, itemName);
+    const handleMovingItem = (
+        playerCallbackFn: Function,
+        itemName: string,
+        isPickup: boolean,
+    ): void => {
+        const updatedPlayer: Player = playerCallbackFn(player, itemName);
+        const updatedItemLocation = isPickup ? null : location;
 
         const updatedItemsMap = updateItemLocation(
             itemsMap,
             itemName,
-            location,
+            updatedItemLocation,
         );
 
         updateState({
@@ -57,11 +62,12 @@ const App = (props: AppProps): JSX.Element => {
         });
     };
 
-    const handlePickupItem = (itemName: string) => {
-        const updatedPlayer = pickupItem(player, itemName);
-        updateState({ ...state, player: updatedPlayer });
+    const handleDropItem = (itemName: string) => {
+        handleMovingItem(dropItem, itemName, false);
+    };
 
-        updateItemLocation(itemsMap, itemName, location);
+    const handlePickupItem = (itemName: string) => {
+        handleMovingItem(pickupItem, itemName, true);
     };
 
     return (
