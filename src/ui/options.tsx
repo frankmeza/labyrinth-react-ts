@@ -39,9 +39,7 @@ const OptionsView = (props: OptionsViewProps): JSX.Element => {
 
     return (
         <div className="room-view">
-            {/* DEBUGGER */}
             <pre>{debugExits}</pre>
-            {/* DEBUGGER */}
 
             {renderLocationButtons()}
         </div>

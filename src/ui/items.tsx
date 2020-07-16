@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../app.scss";
 import { Item, ItemsMap } from "../modules/item";
 import { getPlayerItems, getRoomItems } from "../modules/item/utils";
