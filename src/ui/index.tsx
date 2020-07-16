@@ -3,13 +3,13 @@ import RoomView from "./room";
 import OptionsView from "./options";
 import MenuView from "./menu";
 import ItemsView from "./items";
+import { Player } from "../modules/player";
 import {
-    Player,
     decrementPlayerTorch,
     setPlayerLocation,
     dropItem,
     pickupItem,
-} from "../modules/player";
+} from "../modules/player/utils";
 import { calculateText } from "../modules/story/utils";
 import { ItemsMap, Item } from "../modules/item";
 import { updateItemLocation } from "../modules/item/utils";

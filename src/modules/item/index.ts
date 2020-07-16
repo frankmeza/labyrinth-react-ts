@@ -15,6 +15,7 @@ import {
     ROOM_4,
 } from "../constants/index";
 import { arrows, bow, healthPotion, matches, shield } from "../ascii/index";
+import { createItem } from "./utils";
 
 export interface Item {
     readonly name: string;
@@ -26,20 +27,6 @@ export interface Item {
 export interface ItemsMap {
     readonly [itemName: string]: Item;
 }
-
-const createItem = (
-    name: string,
-    description: string,
-    art: string,
-    location: string | null,
-): Item => {
-    return {
-        name,
-        description,
-        art,
-        location,
-    };
-};
 
 const matchesAscii: Item = createItem(MATCHES, MATCHES_DESC, matches(), null);
 const arrowsAscii: Item = createItem(ARROWS, ARROWS_DESC, arrows(), ROOM_1);

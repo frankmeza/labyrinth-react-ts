@@ -1,5 +1,14 @@
 import { Item } from "../item";
 import { itemsMap } from "../../core";
+import { Room, ExitsMap } from ".";
+
+const createRoom = (name: string, art: string, exits: ExitsMap): Room => {
+    return {
+        name,
+        art,
+        exits,
+    };
+};
 
 const getItemsInRoom = (roomName: string): string[] => {
     const itemsList: Item[] = Object.values(itemsMap);
@@ -15,4 +24,4 @@ const getItemsInRoom = (roomName: string): string[] => {
     return names;
 };
 
-export { getItemsInRoom };
+export { createRoom, getItemsInRoom };

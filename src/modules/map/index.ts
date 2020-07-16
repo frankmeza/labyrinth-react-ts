@@ -14,10 +14,11 @@ import {
     ROOM_6,
     FINAL_ROOM,
 } from "../constants";
+import { createRoom } from "./utils";
 
 type RoomName = string;
 
-interface ExitsMap {
+export interface ExitsMap {
     // VALUES: the room name found through that exit
     readonly [exitDirection: string]: RoomName;
 }
@@ -32,13 +33,6 @@ export interface RoomsMap {
     readonly [roomName: string]: Room;
 }
 
-const createRoom = (name: string, art: string, exits: ExitsMap): Room => {
-    return {
-        name,
-        art,
-        exits,
-    };
-};
 
 // EXITS
 const exitsStartingRoom: ExitsMap = {

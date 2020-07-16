@@ -1,4 +1,5 @@
-import { Player, defaultPlayerProps, setPlayerTorch } from "../player";
+import { Player, defaultPlayerProps } from "../player";
+import { setPlayerTorch } from "../player/utils";
 import {
     lostInALabyrinth,
     starSeparator,

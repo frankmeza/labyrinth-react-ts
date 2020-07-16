@@ -1,5 +1,19 @@
 import { Item, ItemsMap } from ".";
 
+const createItem = (
+    name: string,
+    description: string,
+    art: string,
+    location: string | null,
+): Item => {
+    return {
+        name,
+        description,
+        art,
+        location,
+    };
+};
+
 const isPlayerItem = (item: Item) => {
     // location is null if carried by player
     return item.location === null;
@@ -33,4 +47,4 @@ const updateItemLocation = (
     return itemsMap;
 };
 
-export { getPlayerItems, getRoomItems, updateItemLocation };
+export { createItem, getPlayerItems, getRoomItems, updateItemLocation };
