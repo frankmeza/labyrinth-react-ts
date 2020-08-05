@@ -1,4 +1,4 @@
-import { Item, ItemsMap } from ".";
+import { Item, ItemsMap, defaultItemsMap } from ".";
 
 const createItem = (
     name: string,
@@ -47,4 +47,14 @@ const updateItemLocation = (
     return itemsMap;
 };
 
-export { createItem, getPlayerItems, getRoomItems, updateItemLocation };
+const createItemsMap = (props: ItemsMap = defaultItemsMap): ItemsMap => {
+    return props;
+};
+
+export {
+    createItem,
+    createItemsMap,
+    getPlayerItems,
+    getRoomItems,
+    updateItemLocation,
+};

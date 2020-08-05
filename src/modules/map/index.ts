@@ -33,7 +33,6 @@ export interface RoomsMap {
     readonly [roomName: string]: Room;
 }
 
-
 // EXITS
 const exitsStartingRoom: ExitsMap = {
     TOP: ROOM_1,

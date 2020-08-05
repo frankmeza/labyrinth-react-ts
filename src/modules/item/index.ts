@@ -48,8 +48,4 @@ const defaultItemsMap: ItemsMap = {
     [`${HEALTH_POTION}`]: healthPotionAscii,
 };
 
-const createItemsMap = (props: ItemsMap = defaultItemsMap): ItemsMap => {
-    return props;
-};
-
-export { defaultItemsMap, createItemsMap };
+export { defaultItemsMap };

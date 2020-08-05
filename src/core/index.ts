@@ -1,5 +1,5 @@
-import { createPlayer } from "../modules/player";
-import { createItemsMap } from "../modules/item";
+import { createPlayer } from "../modules/player/utils";
+import { createItemsMap } from "../modules/item/utils";
 
 const player = createPlayer();
 const itemsMap = createItemsMap();
